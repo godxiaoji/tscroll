@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>tScrollbar</title>
+    <style type="text/css">
+        *{padding: 0; margin: 0;}
+        .wrap{width: 800px; margin: 0 auto;}
+        .wrap h1{text-align: center; line-height: 2em;}
+        .wrap h3{line-height: 2em;}
+        .demo{border: 1px solid #ccc;}
+        .demo p{line-height: 20px;}
+        
+        .viewport{height: 200px; overflow: hidden; position: relative;}
+        .wholearea{position: absolute; left: 0; top: 0;}
+        .demo-y .scrollbar{float: right; position: relative; width: 15px; overflow: hidden;}
+        .demo-y .scrollbar-track{height: 100%; background-color: #dedede;}
+        .demo-y .scrollbar-thumb{position: absolute; top: 0; left: 1px; width: 13px; height: 20px; background-color: #f5f5f5; cursor: pointer; overflow: hidden;}
+        .demo-y .scrollbar-thumb-end{height: 5px; background-color: #f5f5f5; overflow: hidden;}
+
+        .demo-x .scrollbar{position: relative; height: 15px; overflow: hidden;}
+        .demo-x .scrollbar-track{height: 15px; width: 100%; background-color: #dedede;}
+        .demo-x .scrollbar-thumb{position: absolute; top: 0; left: 1px; width: 13px; height: 20px; background-color: #f5f5f5; cursor: pointer; overflow: hidden;}
+        .demo-x .scrollbar-thumb-end{height: 5px; background-color: #f5f5f5; overflow: hidden;}
+
+        .scrollbar-hide{display: none;}
+        .no-select{user-select: none; -o-user-select: none; -moz-user-select: none; -khtml-user-select: none; -webkit-user-select: none;}
+    </style>
+</head>
+<body>
+	<div class="wrap">
+        <h1>滚动条</h1>
+        <h3>传统纵向滚动</h3>
+        <div class="demo demo-y" id="demo1">
+            <div class="scrollbar"><div class="scrollbar-track"><div class="scrollbar-thumb"><div class="scrollbar-thumb-end"></div></div></div></div>
+            <div class="viewport">
+                <div class="wholearea">
+                    <p>1</p><p>2</p><p>3</p><p>4</p><p>5</p><p>6</p><p>7</p><p>8</p><p>9</p><p>0</p>
+                    <p>1</p><p>2</p><p>3</p><p>4</p><p>5</p><p>6</p><p>7</p><p>8</p><p>9</p><p>0</p>
+                    <p>1</p><p>2</p><p>3</p><p>4</p><p>5</p><p>6</p><p>7</p><p>8</p><p>9</p><p>0</p>
+                    <p>1</p><p>2</p><p>3</p><p>4</p><p>5</p><p>6</p><p>7</p><p>8</p><p>9</p><p>0</p>
+                </div>
+            </div>
+        </div>
+        <h3>横向滚动</h3>
+        <div class="demo demo-x" id="demo2">
+            <div class="scrollbar"><div class="scrollbar-track"><div class="scrollbar-thumb"><div class="scrollbar-thumb-end"></div></div></div></div>
+            <div class="viewport">
+                <div class="wholearea">
+                    <p>123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890</p>
+                    <p>123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890</p>
+                    <p>123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="tscrollbar.min.js"></script>
+    <script type="text/javascript">
+        var sb1 = tScrollbar('.demo-y');
+        var sb2 = tScrollbar('.demo-x', {
+            axis: 'x'
+        });
+    </script>
+</body>
+</html>
