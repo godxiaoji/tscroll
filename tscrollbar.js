@@ -246,8 +246,8 @@
 
             oViewport.size = oViewport.elem['offset' + sSize];
             oContent.size = oContent.elem['scroll' + sSize];
-            oContent.slideSize = oContent.size - oViewport.size;
-            oContent.ratio = parseFloat(oViewport.size) / oContent.size;
+            oContent.slideSize = Math.max(oContent.size - oViewport.size, 0);
+            oContent.ratio = oContent.size == 0 ? 1 : parseFloat(oViewport.size) / oContent.size;
 
             if(oContent.ratio >= 1) {
                 addClass(oScrollbar.elem, 'scrollbar-hide');
@@ -257,7 +257,7 @@
             oTrack.size = options.trackSize === 'auto' ? oViewport.size : options.trackSize;
             oThumb.size = options.thumbSize === 'auto' ? Math.max(oTrack.size * oContent.ratio, options.thumbMinSize) : options.thumbSize;
             oTrack.slideSize = oTrack.size - oThumb.size;
-            oTrack.ratio = parseFloat(oTrack.slideSize) / oContent.slideSize;
+            oTrack.ratio = oContent.slideSize == 0 ? 1 : parseFloat(oTrack.slideSize) / oContent.slideSize;
 
             setPixelCss(oScrollbar.elem, sCssSize, oTrack.size);
             setPixelCss(oTrack.elem, sCssSize, oTrack.size);
