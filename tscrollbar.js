@@ -115,9 +115,9 @@
                 trackSize: 'auto', // 滚动条长度
                 thumbSize: 'auto', // 滑块长度
                 thumbMinSize: 10,  // 滑块最小长度
-                lockScroll: false, // 锁定滚动事件不被外层接收
+                lockScroll: true, // 锁定滚动事件不被外层接收
                 invertScroll: false, // 移动设备反转滚动
-                onSelect: false // ie低版本的鼠标按下选择问题
+                onSelect: true // ie低版本的鼠标按下选择问题
             };
 
         // 事件绑定
@@ -167,7 +167,7 @@
         function start(event) {
             // 禁止选择
             addClass(eBody, 'no-select');
-            if(!options.onSelect) {
+            if(options.onSelect) {
                 eBody.onselectstart = function() {
                     return false;
                 };
@@ -210,7 +210,7 @@
 
         function end() {
             removeClass(eBody, 'no-select');
-            if(!options.onSelect) {
+            if(options.onSelect) {
                 eBody.onselectstart = null;
             }
 
@@ -251,6 +251,8 @@
 
             if(oContent.ratio >= 1) {
                 addClass(oScrollbar.elem, 'scrollbar-hide');
+            } else {
+                removeClass(oScrollbar.elem, 'scrollbar-hide');
             }
             oTrack.size = options.trackSize === 'auto' ? oViewport.size : options.trackSize;
             oThumb.size = options.thumbSize === 'auto' ? Math.max(oTrack.size * oContent.ratio, options.thumbMinSize) : options.thumbSize;
@@ -260,7 +262,7 @@
             setPixelCss(oScrollbar.elem, sCssSize, oTrack.size);
             setPixelCss(oTrack.elem, sCssSize, oTrack.size);
             setPixelCss(oThumb.elem, sCssSize, oThumb.size);
-            if(sScroll) {
+            if(typeof sScroll !== 'undefined') {
                 iScroll = sScroll === 'bottom' ? oContent.slideSize : parseInt(sScroll);
             }
             self.moveTo(iScroll);

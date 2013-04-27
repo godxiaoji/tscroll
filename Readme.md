@@ -88,7 +88,7 @@ Javascript滚动条插件
 * `thumbMinSize`: 滚动条滑块最小高度，当`thumbSize`为`auto`生效，默认`10`
 * `lockScroll`: 是否锁定滚动事件，如果为`true`,滚动事件不传递给父级，默认为`true`
 * `invertScroll`: 移动设备反转效果，默认为`false`
-* `onSelect`: ie低版本下的兼容措施，`body`的`onselectstart`由于有些情况可能需要用到这个属性，故给个配置选项可以取消插件对这个属性的操作，默认为`false`，指插件可以操作该属性
+* `onSelect`: ie低版本下的兼容措施，`body`的`onselectstart`由于有些情况可能需要用到这个属性，故给个配置选项可以取消插件对这个属性的操作，默认为`true`，指插件可以操作该属性
 
 ### Author
 
