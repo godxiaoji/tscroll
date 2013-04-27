@@ -14,19 +14,19 @@ Javascript滚动条插件
     
     var sb = tScrollbar('.demo');
 
-##### update(pos)
+##### .update(pos)
 
 使用过程中，由于主体内容变化导致高度或宽度改变，可以通过该方法重置滚动条。传入的参数为一个数值（单位px），也可以是字符串 `'bottom'`直接滚到底部，不传维持原有高度。如下：
 
 	sb.update(0);
 
-##### moveTo(pos)
+##### .moveTo(pos)
 
 该方法可以直接让滚动到指定位置，传入的参数为数值（单位px）。如下：
 
 	sb.moveTo(100);
 
-##### setting(options)
+##### .setting(options)
 
 如果开始的时候没有传入配置，中途也是可以重新改的，调用该方法后，还是必须重新调用 `update()` 方法才能使新配置生效。
 
