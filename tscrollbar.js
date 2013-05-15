@@ -10,7 +10,7 @@
     var rQuickExpr = /^(?:#([\w-]+)|\.([\w-]+))$/,
         rWhitespace = /(^\s+)|(\s+$)/g,
         eBody;
-
+    // 基础兼容封装
     // 获取特定元素
     function getMatchElem(selector, parent, nodes) {
         var rets = [],
@@ -138,8 +138,9 @@
             // 滚动事件绑定
             if(options.scroll) {
                 if(window.addEventListener ) {
-                    eWrap.addEventListener('DOMMouseScroll', wheel, false);
                     eWrap.addEventListener('mousewheel', wheel, false );
+                    // firefox事件独立开来
+                    eWrap.addEventListener('DOMMouseScroll', wheel, false);
                     eWrap.addEventListener('MozMousePixelScroll', function(event) {
                         event.preventDefault();
                     }, false);
@@ -153,7 +154,7 @@
         function wheel(event) {
             if(oContent.ratio < 1) {
                 var event = fixEvent(event || window.event),
-                    delta = event.wheelDelta ? event.wheelDelta / 120 : -event.detail / 3;
+                    delta = event.wheelDelta ? event.wheelDelta / 120 : -(event.detail || 0) / 3;
                 
                 iScroll -= delta * options.wheel;
                 self.moveTo(iScroll);
