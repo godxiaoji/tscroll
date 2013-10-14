@@ -2,8 +2,8 @@
  * tScrollbar
  * @Author  Travis(LinYongji)
  * @Contact http://travisup.com/
- * @Version 1.0.0
- * @date    2013-04-27
+ * @Version 1.0.2
+ * @date    2013-10-14
  */
 (function() {
     
@@ -107,6 +107,11 @@
             sDirection = 'top',
             sSize = 'Height',
             touchEvents = typeof document.documentElement.ontouchstart !== "undefined",
+            
+            // 计数器
+            timer = null,
+            // 偏移值
+            deviant = 0,
 
             options = {
                 scroll: true, // 是否绑定滚动事件
@@ -117,7 +122,8 @@
                 thumbMinSize: 10,  // 滑块最小长度
                 lockScroll: true, // 锁定滚动事件不被外层接收
                 invertScroll: false, // 移动设备反转滚动
-                onSelect: true // ie低版本的鼠标按下选择问题
+                onSelect: true, // ie低版本的鼠标按下选择问题
+                bounce: false // 位置反弹
             };
 
         // 事件绑定
@@ -135,6 +141,7 @@
                     }
                 };
             }
+
             // 滚动事件绑定
             if(options.scroll) {
                 if(window.addEventListener ) {
@@ -223,8 +230,8 @@
         }
                 
         function initialize() {
-            bindEvents();
             self.setting(custom);
+            bindEvents();
             self.update();
         }
         
@@ -268,10 +275,38 @@
             }
             self.moveTo(iScroll);
         };
+        
+        // 回弹效果
+        function rebound(origPos) {
+            var speed = (origPos == 0 ? options.wheel : -options.wheel)/1.2; //设置回弹速度
+
+            iScroll += speed;
+            if(iScroll >= 0 && iScroll <= oContent.slideSize) {
+                iScroll = origPos;
+                self.moveTo(iScroll);
+            } else {
+                self.moveTo(iScroll);
+                timer = setTimeout(function() {
+                    rebound(origPos);
+                }, 13);
+            }
+        }
 
         this.moveTo = function(pos) {
             // 修正位置
             iScroll = Math.min((oContent.slideSize), Math.max(0, pos));
+            
+            // 回弹效果
+            if(options.bounce && (pos < 0 || pos > oContent.slideSize)) {
+                var origPos = iScroll;
+
+                clearTimeout(timer);
+                iScroll = pos;
+                timer = setTimeout(function() {
+                    rebound(origPos);
+                }, 13);
+            }
+            
             // 设置样式
             setPixelCss(oThumb.elem, sDirection, iScroll * oTrack.ratio);
             setPixelCss(oContent.elem, sDirection, -iScroll);

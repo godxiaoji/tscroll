@@ -54,11 +54,14 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="tscrollbar.min.js"></script>
+    <script type="text/javascript" src="tscrollbar.js"></script>
     <script type="text/javascript">
-        var sb1 = tScrollbar('.demo-y');
+        var sb1 = tScrollbar('.demo-y', {
+            bounce: true
+        });
         var sb2 = tScrollbar('.demo-x', {
-            axis: 'x'
+            axis: 'x',
+            scroll: false
         });
     </script>
 </body>

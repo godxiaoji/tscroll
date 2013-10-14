@@ -89,6 +89,7 @@ Javascript滚动条插件
 * `lockScroll`: 是否锁定滚动事件，如果为`true`,滚动事件不传递给父级，默认为`true`
 * `invertScroll`: 移动设备反转效果，默认为`false`
 * `onSelect`: ie低版本下的兼容措施，`body`的`onselectstart`由于有些情况可能需要用到这个属性，故给个配置选项可以取消插件对这个属性的操作，默认为`true`，指插件可以操作该属性
+* `bounce`: 是否启用超出反弹效果，多用于移动设备
 
 ### Author
 
