@@ -283,22 +283,19 @@
             iScroll += speed;
             if(iScroll >= 0 && iScroll <= oContent.slideSize) {
                 iScroll = origPos;
-                self.moveTo(iScroll);
-            } else {
-                self.moveTo(iScroll);
-                timer = setTimeout(function() {
-                    rebound(origPos);
-                }, 13);
             }
+            self.moveTo(iScroll);
         }
 
         this.moveTo = function(pos) {
+            var iScrollTemp, origPos;
             // 修正位置
             iScroll = Math.min((oContent.slideSize), Math.max(0, pos));
+            iScrollTemp = iScroll;
             
             // 回弹效果
             if(options.bounce && (pos < 0 || pos > oContent.slideSize)) {
-                var origPos = iScroll;
+                origPos = iScroll;
 
                 clearTimeout(timer);
                 iScroll = pos;
@@ -308,7 +305,7 @@
             }
             
             // 设置样式
-            setPixelCss(oThumb.elem, sDirection, iScroll * oTrack.ratio);
+            setPixelCss(oThumb.elem, sDirection, iScrollTemp * oTrack.ratio);
             setPixelCss(oContent.elem, sDirection, -iScroll);
         };
 
