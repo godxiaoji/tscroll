@@ -37,6 +37,10 @@ Javascript滚动条插件
 	sb.setting(options);
 	sb.update();
 
+##### .scrollTop/scrollLeft
+
+滚动的长度
+
 ##### HTML/CSS
 
 当然这个插件要自己去写滚动条节点和样式的。
@@ -90,6 +94,7 @@ Javascript滚动条插件
 * `invertScroll`: 移动设备反转效果，默认为`false`
 * `onSelect`: ie低版本下的兼容措施，`body`的`onselectstart`由于有些情况可能需要用到这个属性，故给个配置选项可以取消插件对这个属性的操作，默认为`true`，指插件可以操作该属性
 * `bounce`: 是否启用超出反弹效果，多用于移动设备
+* `callback`: 滚动回调函数，传入第一个参数为自己
 
 ### Author
 

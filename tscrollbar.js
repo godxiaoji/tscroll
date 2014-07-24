@@ -2,8 +2,8 @@
  * tScrollbar
  * @Author  Travis(LinYongji)
  * @Contact http://travisup.com/
- * @Version 1.0.2
- * @date    2013-10-14
+ * @Version 1.0.3
+ * @date    2014-07-24
  */
 (function() {
     
@@ -123,8 +123,12 @@
                 lockScroll: true, // 锁定滚动事件不被外层接收
                 invertScroll: false, // 移动设备反转滚动
                 onSelect: true, // ie低版本的鼠标按下选择问题
-                bounce: false // 位置反弹
+                bounce: false, // 位置反弹
+                callback: function() {return false;} // 滚动回调函数
             };
+
+        this.scrollTop = 0;
+        this.scrollLeft = 0;
 
         // 事件绑定
         function bindEvents() {
@@ -307,6 +311,8 @@
             // 设置样式
             setPixelCss(oThumb.elem, sDirection, iScrollTemp * oTrack.ratio);
             setPixelCss(oContent.elem, sDirection, -iScroll);
+            this[sDirection === 'top' ? 'scrollTop' : 'scrollLeft'] = iScroll;
+            options.callback(this);
         };
 
         initialize();
