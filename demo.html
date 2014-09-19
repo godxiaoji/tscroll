@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>tScroll</title>
+    <link type="text/css" rel="stylesheet" href="tscroll.css" media="all">
+    <style type="text/css">
+        *{padding: 0; margin: 0;}
+        .wrap{width: 800px; margin: 0 auto;}
+        .wrap h1{text-align: center; line-height: 2em;}
+        .wrap h3{line-height: 2em;}
+        .demo{border: 1px solid #ccc;}
+        .demo p{line-height: 20px;}
+
+        .demo-x .tscroll_bar{top: auto; right: auto; bottom: 0; left: 0; height: 15px;}
+        .demo-x .tscroll_track{height: 15px; width: 100%;}
+        .demo-x .tscroll_thumb{position: absolute; top: 1px; left: 0; height: 13px;}
+    </style>
+</head>
+<body>
+	<div class="wrap">
+        <h1>滚动条</h1>
+        <h3>Demo1 <small>横向，回弹</small></h3>
+        <div class="demo demo-y">
+            <p>1</p><p>2</p><p>3</p><p>4</p><p>5</p><p>6</p><p>7</p><p>8</p><p>9</p><p>0</p>
+            <p>1</p><p>2</p><p>3</p><p>4</p><p>5</p><p>6</p><p>7</p><p>8</p><p>9</p><p>0</p>
+            <p>1</p><p>2</p><p>3</p><p>4</p><p>5</p><p>6</p><p>7</p><p>8</p><p>9</p><p>0</p>
+            <p>1</p><p>2</p><p>3</p><p>4</p><p>5</p><p>6</p><p>7</p><p>8</p><p>9</p><p>0</p>
+        </div>
+        <h3>Demo2 <small>纵向，禁止滚动</small></h3>
+        <div class="demo demo-x">
+            <p>123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890</p>
+            <p>123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890</p>
+            <p>123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890</p>
+        </div>
+    </div>
+    <script type="text/javascript" src="tscroll.js"></script>
+    <script type="text/javascript">
+        var sb1 = tScroll('.demo-y', {
+            bounce: true
+        });
+        var sb2 = tScroll('.demo-x', {
+            axis: 'x',
+            scroll: false
+        });
+    </script>
+</body>
+</html>

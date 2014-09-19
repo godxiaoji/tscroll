@@ -1,0 +1,59 @@
+.tscroll {
+    position: relative;
+}
+
+.tscroll_view {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.tscroll_pane {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.tscroll_bar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 15px;
+    overflow: hidden;
+}
+
+.tscroll_track {
+    height: 100%;
+    background-color: #dedede;
+}
+
+.tscroll_thumb {
+    position: absolute;
+    top: 0;
+    left: 1px;
+    width: 13px;
+    height: 20px;
+    background-color: #f5f5f5;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.tscroll_thumb_end {
+    height: 5px;
+    background-color: #f5f5f5;
+    overflow: hidden;
+}
+
+.tscroll_hide {
+    display: none;
+}
+
+.tscroll_unselect {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
