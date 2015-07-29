@@ -2,7 +2,7 @@
  * tScroll
  * @Author  Travis(LinYongji)
  * @Contact http://travisup.com/
- * @Version 2.0.0a
+ * @Version 2.0.1a
  * @date    2014-09-03
  */
 (function() {
@@ -120,15 +120,15 @@
 
     // 滚动条架构
     var frame = [
-        '<div class="tscroll_view">',
-            '<div class="tscroll_pane">',
+        '<div class="tscroll-view">',
+            '<div class="tscroll-pane">',
                 '{{content}}', // 内容
             '</div>',
         '</div>',
-        '<div class="tscroll_bar tscroll_hide">',
-            '<div class="tscroll_track">',
-                '<div class="tscroll_thumb">',
-                    '<div class="tscroll_thumb_end">',
+        '<div class="tscroll-bar tscroll-hide">',
+            '<div class="tscroll-track">',
+                '<div class="tscroll-thumb">',
+                    '<div class="tscroll-thumb-end">',
                     '</div>',
                 '</div>',
             '</div>',
@@ -138,11 +138,11 @@
     // 主模块
     function Scrollbar(eWrap, custom) {
         var self = this,
-            oView = {elem: getMatchElem('.tscroll_view', null, eWrap.childNodes)},
-            oPane = {elem: getMatchElem('.tscroll_pane', null, oView.elem.childNodes)},
-            oBar = {elem: getMatchElem('.tscroll_bar', null, eWrap.childNodes)},
-            oTrack = {elem: getMatchElem('.tscroll_track', oBar.elem)},
-            oThumb = {elem: getMatchElem('.tscroll_thumb', oBar.elem)},
+            oView = {elem: getMatchElem('.tscroll-view', null, eWrap.childNodes)},
+            oPane = {elem: getMatchElem('.tscroll-pane', null, oView.elem.childNodes)},
+            oBar = {elem: getMatchElem('.tscroll-bar', null, eWrap.childNodes)},
+            oTrack = {elem: getMatchElem('.tscroll-track', oBar.elem)},
+            oThumb = {elem: getMatchElem('.tscroll-thumb', oBar.elem)},
             iScroll = 0,
             iPosition = {start: 0, now: 0},
             iMouse = {start: 0, now: 0},
@@ -218,7 +218,7 @@
 
         function start(event) {
             // 禁止选择
-            addClass(body, 'tscroll_unselect');
+            addClass(body, 'tscroll-unselect');
             options.onSelect && (body.onselectstart = returnFalse);
 
             var event = fixEvent(event || window.event),
@@ -257,7 +257,7 @@
         }
 
         function end() {
-            removeClass(body, 'tscroll_unselect');
+            removeClass(body, 'tscroll-unselect');
             options.onSelect && (body.onselectstart = null);
 
             if(!touchEvents) {
@@ -317,9 +317,9 @@
             oPane.ratio = oPane.size == 0 ? 1 : parseFloat(oView.size) / oPane.size;
 
             if(oPane.ratio >= 1) {
-                addClass(oBar.elem, 'tscroll_hide');
+                addClass(oBar.elem, 'tscroll-hide');
             } else {
-                removeClass(oBar.elem, 'tscroll_hide');
+                removeClass(oBar.elem, 'tscroll-hide');
             }
             oTrack.size = options.trackSize === 'auto' ? oView.size : options.trackSize;
             oThumb.size = options.thumbSize === 'auto' ? Math.max(oTrack.size * oPane.ratio, options.thumbMinSize) : options.thumbSize;
