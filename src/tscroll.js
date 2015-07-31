@@ -2,7 +2,7 @@
  * tScroll
  * @Author  Travis(LinYongji)
  * @Contact http://travisup.com/
- * @Version 2.0.1a
+ * @Version 2.0.2a
  * @date    2014-09-03
  */
 (function() {
@@ -251,8 +251,9 @@
                     iPosition.now = Math.min((oTrack.slideSize), Math.max(0, (iPosition.start + (iMouse.now - iMouse.start))));
                 }
                 iScroll = iPosition.now / oTrack.ratio;
-                setPixelCss(oThumb.elem, sDirection, iPosition.now);
-                setPixelCss(oPane.elem, sDirection, -iScroll);
+                // setPixelCss(oThumb.elem, sDirection, iPosition.now);
+                // setPixelCss(oPane.elem, sDirection, -iScroll);
+                self.moveTo(iScroll);
             }
         }
 
