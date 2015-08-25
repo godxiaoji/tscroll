@@ -2,7 +2,7 @@
  * tScroll
  * @Author  Travis(LinYongji)
  * @Contact http://travisup.com/
- * @Version 2.0.2a
+ * @Version 2.0.4a
  * @date    2014-09-03
  */
 (function() {
@@ -222,7 +222,7 @@
             options.onSelect && (body.onselectstart = returnFalse);
 
             var event = fixEvent(event || window.event),
-            thumbPos = parseInt(oThumb.elem.style[sDirection]);
+                thumbPos = parseInt(oThumb.elem.style[sDirection]);
             iMouse.start = sAxis ? event.pageX : event.pageY;
             iPosition.start = isNaN(thumbPos) ? 0 : thumbPos;
 
@@ -254,6 +254,11 @@
                 // setPixelCss(oThumb.elem, sDirection, iPosition.now);
                 // setPixelCss(oPane.elem, sDirection, -iScroll);
                 self.moveTo(iScroll);
+            }
+            // 解决由于ie拖出窗口丢失mouseup的问题
+            var ua = window.navigator.userAgent.toLowerCase();
+            if(/msie/.test(ua) && !(document.documentMode >= 9) && !event.button) {
+                end.call(this, event);
             }
         }
 
@@ -310,7 +315,8 @@
         };
 
         this.update = function(scroll) {
-            var sCssSize = sSize.toLowerCase();
+            var sCssSize = sSize.toLowerCase(),
+                thumbScrollSize = parseFloat(oThumb.elem.style[sDirection]);
 
             oView.size = oView.elem['offset' + sSize];
             oPane.size = oPane.elem['scroll' + sSize];
@@ -333,7 +339,11 @@
             if(typeof scroll !== 'undefined') {
                 iScroll = scroll === 'bottom' ? oPane.slideSize : parseInt(scroll);
             }
-            return self.moveTo(iScroll);
+
+            self.moveTo(iScroll);
+            // 计算滚动条差值，修正滑动距离
+            iPosition.start += parseFloat(oThumb.elem.style[sDirection]) - thumbScrollSize;
+            return self;
         };
 
         this.moveTo = function(scroll) {
