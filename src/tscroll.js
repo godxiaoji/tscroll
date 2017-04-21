@@ -2,7 +2,7 @@
  * tScroll
  * @Author  Travis(LinYongji)
  * @Contact http://travisup.com/
- * @Version 2.0.6
+ * @Version 2.0.7
  * @date    2014-09-03
  */
 (function() {
@@ -231,7 +231,7 @@
                     iScrollTemp = iScroll;
 
                 iScroll -= delta * options.wheel;
-                self.moveTo(iScroll);
+                self.moveTo(iScroll, 'wheel');
 
                 if (options.lockScroll || (iScroll !== oPane.slideSize && iScroll !== 0) || iScroll !== iScrollTemp) {
                     event.preventDefault();
@@ -381,7 +381,7 @@
             return self;
         };
 
-        this.moveTo = function(scroll) {
+        this.moveTo = function(scroll, eventName) {
             var iScrollTemp, origScroll;
             // 修正位置
             iScroll = Math.min((oPane.slideSize), Math.max(0, scroll));
@@ -405,6 +405,7 @@
             self.scroll = iScroll;
             self.scrollProgress = iScroll / oPane.slideSize;
             self.scrollSize = oPane.slideSize;
+            self.eventName = eventName || '';
             options.callback(self);
             return self;
         };
